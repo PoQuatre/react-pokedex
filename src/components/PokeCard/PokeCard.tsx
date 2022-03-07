@@ -9,10 +9,10 @@ interface Props {
 export class PokeCard extends Component<Props> {
   render() {
     return (
-      <div className={styles.card}>
-        <img src={this.props.pokemon.img} alt={this.props.pokemon.name} />
+      <li className={styles.card}>
+        <img src={this.props.pokemon.sprite} alt={this.props.pokemon.name} />
         <p className={styles.name}>{this.props.pokemon.name}</p>
-      </div>
+      </li>
     );
   }
 }

@@ -5,6 +5,7 @@
 .grid {
   display: flex;
   max-width: 60em;
+  padding: 0;
   margin-inline: auto;
   flex-wrap: wrap;
   justify-content: space-evenly;
