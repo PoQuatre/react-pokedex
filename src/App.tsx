@@ -1,9 +1,10 @@
-import { PokeCard } from "$components";
+import { PokeCard, PokeDisplay } from "$components";
 import { Pokemon, PokemonAPI } from "$types";
 import { Component } from "react";
 import styles from "./App.module.css";
 
 interface State {
+  selected?: Pokemon;
   pokemons: Pokemon[];
 }
 
@@ -44,11 +45,19 @@ export class App extends Component<{}, State> {
   render() {
     return (
       <>
+        {this.state.selected !== undefined && (
+          <PokeDisplay {...this.state.selected} />
+        )}
+
         <h1 className={styles.title}>Pokedex</h1>
 
         <ul className={styles.grid}>
           {this.state.pokemons.map((pokemon) => (
-            <PokeCard key={pokemon.id} pokemon={pokemon} />
+            <PokeCard
+              key={pokemon.id}
+              pokemon={pokemon}
+              onClick={() => this.setState({ selected: pokemon })}
+            />
           ))}
         </ul>
       </>

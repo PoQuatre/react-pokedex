@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+  padding-block: 1rem;
+}
+
+.img {
+  width: 192px;
+  height: 192px;
+  image-rendering: pixelated;
+}
+
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.dataLine {
+  font-style: italic;
+}
+
+.data {
+  font-style: normal;
+  font-weight: bold;
+}
+
+.caps {
+  text-transform: capitalize;
+}
