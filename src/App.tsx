@@ -1,5 +1,5 @@
 import { Pages, PokeCard, PokeDisplay } from "$components";
-import { Pokemon, PokemonAPI } from "$types";
+import { fetchCache, Pokemon, PokemonAPI } from "$utils";
 import { ChangeEvent, Component } from "react";
 import styles from "./App.module.css";
 
@@ -33,22 +33,20 @@ export class App extends Component<{}, State> {
     this.state.controller?.abort();
     const controller = new AbortController();
     this.setState({ pokemons: [], controller }, () => {
-      fetch(
+      fetchCache(
         `${endpoint}?limit=${this.state.pokemonsPerPage}&offset=${
           this.state.currentPage * this.state.pokemonsPerPage
         }`,
         { signal: controller.signal }
       )
-        .then((res) => res.json())
         .then((res: { count: number; results: any[] }) => {
           this.setState({ totalPokemons: res.count });
           return res.results;
         })
         .then((res: { url: string }[]) => {
           res.forEach((entry) =>
-            fetch(entry.url, { signal: controller.signal })
-              .then((res) => res.json())
-              .then((pokemon: PokemonAPI) =>
+            fetchCache(entry.url, { signal: controller.signal }).then(
+              (pokemon: PokemonAPI) =>
                 this.setState((state) => ({
                   pokemons: [
                     ...state.pokemons,
@@ -62,7 +60,7 @@ export class App extends Component<{}, State> {
                     },
                   ].sort((poke1, poke2) => poke1.id - poke2.id),
                 }))
-              )
+            )
           );
         })
         .catch((err) => console.error(err));

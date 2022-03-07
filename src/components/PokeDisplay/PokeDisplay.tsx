@@ -1,4 +1,4 @@
-import { Pokemon } from "$types";
+import { Pokemon } from "../../utils";
 import { Component } from "react";
 import styles from "./PokeDisplay.module.css";
 

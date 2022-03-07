@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
     "paths": {
       "$components": ["./src/components/index.ts"],
-      "$types": ["./src/types.ts"]
+      "$utils": ["./src/utils.ts"]
     }
   },
   "include": ["src"]
