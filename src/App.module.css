@@ -1,0 +1,12 @@
+.title {
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  max-width: 60em;
+  margin-inline: auto;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
