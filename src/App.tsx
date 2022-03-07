@@ -1,4 +1,4 @@
-import { PokeCard, PokeDisplay } from "$components";
+import { Pages, PokeCard, PokeDisplay } from "$components";
 import { Pokemon, PokemonAPI } from "$types";
 import { ChangeEvent, Component } from "react";
 import styles from "./App.module.css";
@@ -6,6 +6,8 @@ import styles from "./App.module.css";
 interface State {
   selected?: Pokemon;
   pokemonsPerPage: number;
+  totalPokemons: number;
+  currentPage: number;
   pokemons: Pokemon[];
 }
 
@@ -14,7 +16,12 @@ const endpoint = "https://pokeapi.co/api/v2/pokemon/";
 export class App extends Component<{}, State> {
   constructor(props: {}) {
     super(props);
-    this.state = { pokemonsPerPage: 20, pokemons: [] };
+    this.state = {
+      pokemonsPerPage: 20,
+      totalPokemons: 0,
+      currentPage: 0,
+      pokemons: [],
+    };
   }
 
   componentDidMount() {
@@ -23,9 +30,16 @@ export class App extends Component<{}, State> {
 
   fetchPokemons = () => {
     this.setState({ pokemons: [] }, () => {
-      fetch(`${endpoint}?limit=${this.state.pokemonsPerPage}`)
+      fetch(
+        `${endpoint}?limit=${this.state.pokemonsPerPage}&offset=${
+          this.state.currentPage * this.state.pokemonsPerPage
+        }`
+      )
         .then((res) => res.json())
-        .then((res: { results: any[] }) => res.results)
+        .then((res: { count: number; results: any[] }) => {
+          this.setState({ totalPokemons: res.count });
+          return res.results;
+        })
         .then((res: { url: string }[]) => {
           res.forEach((entry) =>
             fetch(entry.url)
@@ -58,6 +72,10 @@ export class App extends Component<{}, State> {
     );
   };
 
+  onPageChange = (newPage: number) => {
+    this.setState({ currentPage: newPage }, this.fetchPokemons);
+  };
+
   render() {
     return (
       <>
@@ -85,6 +103,13 @@ export class App extends Component<{}, State> {
             />
           ))}
         </ul>
+
+        <Pages
+          current={this.state.currentPage}
+          elements={this.state.totalPokemons}
+          pageSize={this.state.pokemonsPerPage}
+          onPageChange={this.onPageChange}
+        />
       </>
     );
   }

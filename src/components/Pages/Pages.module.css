@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  max-width: 60em;
+  justify-content: space-evenly;
+  margin-block: 2rem;
+  margin-inline: auto;
+}
+
+.button {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid #000;
+}
