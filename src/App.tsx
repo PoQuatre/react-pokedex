@@ -82,39 +82,41 @@ export class App extends Component<{}, State> {
 
   render() {
     return (
-      <>
+      <div className={styles.container}>
         {this.state.selected !== undefined && (
           <PokeDisplay {...this.state.selected} />
         )}
 
-        <h1 className={styles.title}>Pokedex</h1>
+        <div className={styles.pokeContainer}>
+          <h1 className={styles.title}>Pokedex</h1>
 
-        <div className={styles.perPage}>
-          <label htmlFor="per-page">Pokemons per page: </label>
-          <select id="per-page" onChange={this.onChangePokemonsPerPage}>
-            <option value={20}>20</option>
-            <option value={50}>50</option>
-            <option value={100}>100</option>
-          </select>
+          <div className={styles.perPage}>
+            <label htmlFor="per-page">Pokemons per page: </label>
+            <select id="per-page" onChange={this.onChangePokemonsPerPage}>
+              <option value={20}>20</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+            </select>
+          </div>
+
+          <ul className={styles.grid}>
+            {this.state.pokemons.map((pokemon) => (
+              <PokeCard
+                key={pokemon.id}
+                pokemon={pokemon}
+                onClick={() => this.setState({ selected: pokemon })}
+              />
+            ))}
+          </ul>
+
+          <Pages
+            current={this.state.currentPage}
+            elements={this.state.totalPokemons}
+            pageSize={this.state.pokemonsPerPage}
+            onPageChange={this.onPageChange}
+          />
         </div>
-
-        <ul className={styles.grid}>
-          {this.state.pokemons.map((pokemon) => (
-            <PokeCard
-              key={pokemon.id}
-              pokemon={pokemon}
-              onClick={() => this.setState({ selected: pokemon })}
-            />
-          ))}
-        </ul>
-
-        <Pages
-          current={this.state.currentPage}
-          elements={this.state.totalPokemons}
-          pageSize={this.state.pokemonsPerPage}
-          onPageChange={this.onPageChange}
-        />
-      </>
+      </div>
     );
   }
 }

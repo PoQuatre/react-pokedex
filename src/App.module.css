@@ -1,3 +1,13 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pokeContainer {
+  overflow-y: auto;
+}
+
 .title {
   margin-block: 1rem;
   text-align: center;
