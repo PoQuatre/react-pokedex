@@ -9,6 +9,7 @@ interface State {
   totalPokemons: number;
   currentPage: number;
   pokemons: Pokemon[];
+  controller?: AbortController;
 }
 
 const endpoint = "https://pokeapi.co/api/v2/pokemon/";
@@ -29,11 +30,14 @@ export class App extends Component<{}, State> {
   }
 
   fetchPokemons = () => {
-    this.setState({ pokemons: [] }, () => {
+    this.state.controller?.abort();
+    const controller = new AbortController();
+    this.setState({ pokemons: [], controller }, () => {
       fetch(
         `${endpoint}?limit=${this.state.pokemonsPerPage}&offset=${
           this.state.currentPage * this.state.pokemonsPerPage
-        }`
+        }`,
+        { signal: controller.signal }
       )
         .then((res) => res.json())
         .then((res: { count: number; results: any[] }) => {
@@ -42,7 +46,7 @@ export class App extends Component<{}, State> {
         })
         .then((res: { url: string }[]) => {
           res.forEach((entry) =>
-            fetch(entry.url)
+            fetch(entry.url, { signal: controller.signal })
               .then((res) => res.json())
               .then((pokemon: PokemonAPI) =>
                 this.setState((state) => ({
