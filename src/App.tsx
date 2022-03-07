@@ -1,26 +1,209 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { PokeCard } from "$components";
+import { Pokemon } from "$types";
+import { Component } from "react";
+import styles from "./App.module.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface State {
+  pokemons: Pokemon[];
 }
 
-export default App;
+export class App extends Component<{}, State> {
+  constructor(props: {}) {
+    super(props);
+
+    this.state = {
+      pokemons: [
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+        {
+          id: 1,
+          name: "bulbasaur",
+          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          height: 4,
+          weight: 5,
+          types: ["plant"],
+        },
+      ],
+    };
+  }
+
+  render() {
+    return (
+      <>
+        <h1 className={styles.title}>Pokedex</h1>
+
+        <div className={styles.grid}>
+          {this.state.pokemons.map((pokemon) => (
+            <PokeCard pokemon={pokemon} />
+          ))}
+        </div>
+      </>
+    );
+  }
+}
